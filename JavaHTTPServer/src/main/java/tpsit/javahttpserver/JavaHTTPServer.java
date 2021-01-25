@@ -137,7 +137,7 @@ public class JavaHTTPServer implements Runnable {
                 String content = getContentType(fileRequested);
 
                 if (method.equals("GET")) { // GET method so we return content
-                    byte[] fileData = readFileData(file, fileLength);
+                    byte[] fileData = readFileData( file,fileLength);
 
                     // send HTTP Headers
                     out.println("HTTP/1.1 200 OK");
@@ -184,12 +184,13 @@ public class JavaHTTPServer implements Runnable {
 
     }
 
-    private byte[] readFileData(File file, int fileLength) throws IOException {
+    private byte[]  readFileData(File file, int fileLength) throws IOException {
         FileInputStream fileIn = null;
         byte[] fileData = new byte[fileLength];
 
         try {
             fileIn = new FileInputStream(file);
+            //fileIn =(FileInputStream) getClass().getClassLoader().getResourceAsStream(fileRequested)
             fileIn.read(fileData);
         } finally {
             if (fileIn != null) {
@@ -280,5 +281,6 @@ public class JavaHTTPServer implements Runnable {
             }
         }
     }
+
 
 }
