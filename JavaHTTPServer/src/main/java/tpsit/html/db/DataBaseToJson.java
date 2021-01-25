@@ -25,33 +25,32 @@ public class DataBaseToJson {
      * @param args the command line arguments
      */
     public static ResultSet RecuperaDati() throws Exception {
-        // TODO code application logic here
-        //Registering the Driver
+        //Registrazione del driver
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        //Getting the connection
+        //ottenere la connessione
         String mysqlUrl = "jdbc:mysql://localhost:3306/es_1_tpsit?";
         String userName = "root";
         String passWord = "HA45@BMV";
         Connection con = DriverManager.getConnection(mysqlUrl, userName, passWord);
         System.out.println("Connection established......");
-        //Creating the Statement
+        //Creazione della dichiarazione
         Statement stmt = con.createStatement();
-        //Retrieving the records
+        //Recuperare i record
         ResultSet rs = stmt.executeQuery("select * from anagrafica");
         return rs;
     }
 
     public static void main(String[] args) throws SQLException, Exception {
         // TODO code application logic here
-        //Creating a JSONObject object
+        //Creazione di un oggetto JSONObject
         JSONObject jsonObject = new JSONObject();
-        //Creating a json array
+        //Creazione di un array json
         JSONArray array = new JSONArray();
         ResultSet rs = RecuperaDati();
-        //Inserting ResutlSet data into the json object
+         //inserimento dei dati ResutlSet nell'oggetto json
         while (rs.next()) {
             JSONObject record = new JSONObject();
-            //Inserting key-value pairs into the json object
+           //inserimento di coppie chiave-valore nell'oggetto json
             record.put("IdPersona", rs.getInt("IdPersona"));
             record.put("Cognome", rs.getString("Cognome"));
             record.put("Nome", rs.getString("Nome"));
@@ -60,11 +59,10 @@ public class DataBaseToJson {
         }
         jsonObject.put("Anagrafica", array);
         try {
-            FileWriter file = new FileWriter("C:\\Users\\CENTRO TELEFONIA\\OneDrive\\Desktop\\git_tpisit_1\\Java-e-Database-mysql\\JavaHTTPServer\\src\\main\\java\\tpsit\\html\\db\\dbJson.json");
+            FileWriter file = new FileWriter("Java-e-Database-mysql\\JavaHTTPServer\\src\\main\\java\\tpsit\\html\\db\\dbJson.json");
             file.write(jsonObject.toJSONString());
             file.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("JSON file creato.....");

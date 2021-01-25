@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
 // Each Client Connection will be managed in a dedicated Thread
 public class JavaHTTPServer implements Runnable {
 
-    static final File WEB_ROOT = new File("C:\\Users\\CENTRO TELEFONIA\\Documents\\NetBeansProjects\\TPSIT\\JavaHTTPServer\\src\\main\\java\\tpsit\\html");
+    static final File WEB_ROOT = new File("JavaHTTPServer\\src\\main\\java\\tpsit\\html");
     static final String DEFAULT_FILE = "index.html";
     static final String FILE_NOT_FOUND = "404.html";
     static final String METHOD_NOT_SUPPORTED = "not_supported.html";
@@ -33,7 +33,7 @@ public class JavaHTTPServer implements Runnable {
     static final String FILE_DBJSON = "dbJson.json";
    static final String FILE_DBXML = "dbXml.xml";
     // port to listen connection
-    static final int PORT = 8080;
+    static final int PORT = 3000;
 
     // verbose mode
     static final boolean verbose = true;
